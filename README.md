@@ -32,25 +32,25 @@ This RESTful API powers the weather forecasting logic, user preferences, saved l
 
 ### 📡 Weather
 
-GET /api/weather/:city
-GET /api/weather/city?city=London
-GET /api/weather/daily?lat=53.48&lon=-2.24&cnt=7
-GET /api/weather/uv?lat=53.48&lon=-2.24
+- GET /api/weather/:city
+- GET /api/weather/city?city=London
+- GET /api/weather/daily?lat=53.48&lon=-2.24&cnt=7
+- GET /api/weather/uv?lat=53.48&lon=-2.24
 
-GET /api/user/locations
-POST /api/user/locations
-PUT /api/user/locations/:id
-DELETE /api/user/locations/:id
+- GET /api/user/locations
+- POST /api/user/locations
+- PUT /api/user/locations/:id
+- DELETE /api/user/locations/:id
 
-GET /api/user/preferences
-POST /api/user/preferences
-PUT /api/user/preferences
+- GET /api/user/preferences
+- POST /api/user/preferences
+- PUT /api/user/preferences
 
-GET /api/user/search-history
-POST /api/user/search
-DELETE /api/user/search-history
+- GET /api/user/search-history
+- POST /api/user/search
+- DELETE /api/user/search-history
 
-POST /api/user/feedback
+- POST /api/user/feedback
 
 ### Setting up
 
