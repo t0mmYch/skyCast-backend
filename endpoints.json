@@ -1,0 +1,77 @@
+[
+    {
+      "method": "GET",
+      "path": "/api/weather/:city",
+      "description": "Get current and forecast weather for a city (by path param)"
+    },
+    {
+      "method": "GET",
+      "path": "/api/weather/city?city=London",
+      "description": "Get current and forecast weather for a city (by query param)"
+    },
+    {
+      "method": "GET",
+      "path": "/api/weather/daily?lat=53.48&lon=-2.24&cnt=7",
+      "description": "Get 7-day forecast by coordinates"
+    },
+    {
+      "method": "GET",
+      "path": "/api/weather/uv?lat=53.48&lon=-2.24",
+      "description": "Get UV index by coordinates"
+    },
+    {
+      "method": "GET",
+      "path": "/api/user/locations",
+      "description": "Get all saved favorite locations"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/locations",
+      "description": "Save a favorite location"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/user/locations/:id",
+      "description": "Remove a favorite city"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/user/locations/:id",
+      "description": "Update a saved location's name"
+    },
+    {
+      "method": "GET",
+      "path": "/api/user/preferences",
+      "description": "Get user display preferences (units, theme, language)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/preferences",
+      "description": "Save user display preferences"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/user/preferences",
+      "description": "Update user display preferences"
+    },
+    {
+      "method": "GET",
+      "path": "/api/user/search-history",
+      "description": "Get user's previously searched cities"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/search",
+      "description": "Log a new search to search history"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/user/search-history",
+      "description": "Clear search history"
+    },
+    {
+      "method": "POST",
+      "path": "/api/user/feedback",
+      "description": "Send app feedback or bug reports"
+    }
+  ]
