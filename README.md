@@ -66,7 +66,7 @@ npm install
 3. Set up your .env
 
 PORT=5050
-WEATHER_API_KEY=your_openweathermap_api_key
+WEATHER_API_KEY=skycastapikey
 
 4. Run the app
 
