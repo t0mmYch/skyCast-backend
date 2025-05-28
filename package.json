@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
-  },
+    "dev": "nodemon app.js",
+    "test": "jest"  
+   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/t0mmYch/skyCast-backend.git"
@@ -26,6 +27,8 @@
     "pg": "^8.16.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.1"
   }
 }
