@@ -7,7 +7,10 @@ router.get('/', (req, res) => {
   });
 router.get('/:city', weatherController.getWeather);
 router.get('/city', weatherController.getWeatherByCityQuery);
+router.get('/api/weather/:city', weatherController.getWeatherByCityParam);
 router.get('/daily', weatherController.getDailyForecast);
 router.get('/uv', weatherController.getUVIndex);
+
+
 
 module.exports = router;

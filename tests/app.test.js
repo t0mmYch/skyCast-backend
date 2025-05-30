@@ -81,7 +81,7 @@ describe("User Location Endpoints", () => {
   test("POST /api/user/locations saves location", async () => {
     const res = await request(app)
       .post("/api/user/locations")
-      .send({ name: "London" })
+      .send({ name: "London", lat: 51.5074, lon: -0.1278 })
       .expect(201);
     expect(res.body.name).toBe("London");
   });
@@ -96,9 +96,9 @@ describe("User Location Endpoints", () => {
   test("DELETE /api/user/locations/:id works", async () => {
     const post = await request(app)
       .post("/api/user/locations")
-      .send({ name: "DeleteCity" });
+      .send({ name: "DeleteCity", lat: 10, lon: 20 });
     const id = post.body.id;
-    const del = await request(app)
+    await request(app)
       .delete(`/api/user/locations/${id}`)
       .expect(204);
   });
@@ -106,7 +106,7 @@ describe("User Location Endpoints", () => {
   test("PUT /api/user/locations/:id updates location", async () => {
     const post = await request(app)
       .post("/api/user/locations")
-      .send({ name: "OldCity" });
+      .send({ name: "OldCity", lat: 10, lon: 20 });
     const id = post.body.id;
     const put = await request(app)
       .put(`/api/user/locations/${id}`)

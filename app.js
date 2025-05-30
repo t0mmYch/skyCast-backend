@@ -19,4 +19,8 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+app.all('*', (req, res) => {
+    res.status(404).json({ error: 'Path Not Found' });
+  });
+  
 module.exports = app;
