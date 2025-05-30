@@ -10,7 +10,7 @@ afterAll(() => {
   db.end();
 });
 
-describe.only("Weather API Endpoints", () => {
+describe("Weather API Endpoints", () => {
   test("404 for invalid endpoint", async () => {
     const response = await request(app).get("/api/banana");
     expect(response.status).toBe(404);
@@ -113,6 +113,14 @@ describe("User Location Endpoints", () => {
       .send({ name: "NewCity" })
       .expect(200);
     expect(put.body.name).toBe("NewCity");
+  });
+
+  test("400: missing fields", async () => {
+    const response = await request(app)
+      .post("/api/user/locations")
+      .send({})
+      .expect(400);
+    expect(response.body.error).toMatch(/missing required fields/i);
   });
 });
 

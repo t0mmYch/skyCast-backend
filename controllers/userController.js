@@ -12,16 +12,28 @@ exports.getLocations = (req, res) => {
     .catch(err => res.status(500).json({ error: 'Failed to fetch locations' }));
 };
 exports.saveLocation = (req, res) => {
-  locationModel.saveLocation(req.body)
+  const { name, lat, lon } = req.body;
+  if (!name || lat == null || lon == null) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  locationModel.saveLocation({ name, lat, lon })
     .then(loc => res.status(201).json(loc))
     .catch(err => res.status(500).json({ error: 'Failed to save location' }));
 };
 exports.deleteLocation = (req, res) => {
   locationModel.deleteLocation(req.params.id)
-    .then(() => res.status(204).send())
+    .then(result => {
+      if (result.rowCount === 0) {
+        return res.status(404).json({ error: 'Location not found' });
+      }
+      res.status(204).send();
+    })
     .catch(err => res.status(500).json({ error: 'Failed to delete location' }));
 };
 exports.updateLocation = (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
   locationModel.updateLocation(req.params.id, req.body.name)
     .then(loc => loc ? res.json(loc) : res.status(404).json({ error: 'Location not found' }))
     .catch(err => res.status(500).json({ error: 'Failed to update location' }));
@@ -56,6 +68,9 @@ exports.getSearchHistory = (req, res) => {
 };
 exports.logSearch = (req, res) => {
   const userId = getUserId(req);
+  if (!req.body.city) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
   searchHistoryModel.logSearch(userId, req.body.city)
     .then(entry => res.status(201).json(entry))
     .catch(err => res.status(500).json({ error: 'Failed to log search' }));
@@ -69,6 +84,8 @@ exports.clearSearchHistory = (req, res) => {
 
 // Feedback (still in-memory or stub)
 exports.sendFeedback = (req, res) => {
-  // In a real app, send feedback to email or store in DB
-  res.status(201).json({ message: 'Feedback received', ...req.body });
+  if (!req.body.message) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+  res.status(201).json({ message: req.body.message });
 }; 
