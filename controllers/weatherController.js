@@ -4,6 +4,8 @@ const weatherModel = require('../models/weatherModel');
 exports.getWeather = async (req, res) => {
   try {
     const city = req.params.city;
+    if (!city) return res.status(400).json({ error: 'City parameter is required' });
+    
     const weatherData = await weatherService.fetchWeather(city);
     const formatted = weatherModel.formatWeatherData(weatherData, city);
     res.json(formatted);
@@ -37,6 +39,7 @@ exports.getWeatherByCityQuery = async (req, res) => {
   try {
     const city = req.query.city;
     if (!city) return res.status(400).json({ error: 'City query parameter is required' });
+    
     const weatherData = await weatherService.fetchWeather(city);
     const formatted = weatherModel.formatWeatherData(weatherData, city);
     res.json(formatted);
@@ -53,8 +56,14 @@ exports.getWeatherByCityQuery = async (req, res) => {
 exports.getDailyForecast = async (req, res) => {
   try {
     const { lat, lon, cnt } = req.query;
-    if (!lat || !lon) return res.status(400).json({ error: 'lat and lon query parameters are required' });
+    if (!lat || !lon) {
+      return res.status(400).json({ error: 'lat and lon query parameters are required' });
+    }
+    
     const forecastData = await weatherService.fetchDailyForecast(lat, lon, cnt);
+    if (!Array.isArray(forecastData)) {
+      throw new Error('Invalid forecast data format');
+    }
     res.json(forecastData);
   } catch (error) {
     console.error(error);
@@ -65,8 +74,14 @@ exports.getDailyForecast = async (req, res) => {
 exports.getUVIndex = async (req, res) => {
   try {
     const { lat, lon } = req.query;
-    if (!lat || !lon) return res.status(400).json({ error: 'lat and lon query parameters are required' });
+    if (!lat || !lon) {
+      return res.status(400).json({ error: 'lat and lon query parameters are required' });
+    }
+    
     const uvData = await weatherService.fetchUVIndex(lat, lon);
+    if (!uvData || typeof uvData.uvi === 'undefined') {
+      throw new Error('Invalid UV data format');
+    }
     res.json(uvData);
   } catch (error) {
     console.error(error);
