@@ -76,5 +76,9 @@ npm run dev
 
 npm start
 
+5. Run the tests
+
+npm test app
+
 👥 Authors
 Thomai Christopoulou - Initial work - https://github.com/t0mmYch
