@@ -2,6 +2,9 @@ const app = require("../app");
 const db = require("../db/connection");
 const request = require("supertest");
 
+// Mock the weather service
+jest.mock('../services/weatherService', () => require('./mocks/weatherServiceMock'));
+
 beforeEach(async () => {
   // Reset test DB if needed
 });
