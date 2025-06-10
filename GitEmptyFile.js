@@ -1,2 +1,0 @@
-//This file is intentionally left empty to demonstrate that it can be commited with my main email address.
-//On github.com everytime I commited a file, there was my local email address used, which caused an issue with my commits/ distributions.
